@@ -5,6 +5,7 @@ session_start();
 /* recaptcha code starts here : */
 
 $response = $_POST['g-recaptcha-response'];
+		//my-secret-key
 $mysecret = "6LeW-IslAAAAAIqoTp2Qgt-38blZnKik-ooKMGDs";
 $url = 'https://www.google.com/recaptcha/api/siteverify';
 $data = [
@@ -159,6 +160,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $flag){
                 <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
+            					   <!-- your-site-key -->
             <div class="g-recaptcha" data-sitekey="6LeW-IslAAAAAJCUowA8zfm3s1aJBveIOGwbGTDR"></div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">

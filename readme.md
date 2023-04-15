@@ -29,7 +29,7 @@
 
 ## 8) install composer globally on your device 
 
-## 9) clone the repo and run the following in your terminal (in the folder the contains the files) :
+## 9) clone the repo and run the following in your terminal (in the folder that contains the files) :
                 `composer install `
 
 ## 10) google search "localhost" and run it using appache server (XAMP or Ampps or any equevelent)
