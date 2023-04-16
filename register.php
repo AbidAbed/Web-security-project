@@ -1,33 +1,33 @@
 <?php
 session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    /* recaptcha code starts here */
+    $response = $_POST['g-recaptcha-response'];
+    //my-secret-key (down )
+    $mysecret = "6LeW-IslAAAAAIqoTp2Qgt-38blZnKik-ooKMGDs";
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
 
-/* recaptcha code starts here */
-$response = $_POST['g-recaptcha-response'];
-		//my-secret-key (down )
-$mysecret = "6LeW-IslAAAAAIqoTp2Qgt-38blZnKik-ooKMGDs";
-$url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = [
+        'secret' => $mysecret,
+        'response' => $response,
+    ];
 
-$data = [
-    'secret' => $mysecret,
-    'response' => $response,
-];
+    $options = [
+        'http' => [
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($data),
+        ],
+    ];
 
-$options = [
-    'http' => [
-        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-        'method' => 'POST',
-        'content' => http_build_query($data),
-    ],
-];
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    $jsonArray = json_decode($result, true);
 
-$context = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-$jsonArray = json_decode($result, true);
-
-$key = "success";
-$flag = isset($jsonArray[$key]) && $jsonArray[$key] === true;
-/* recaptcha code ends here */
-
+    $key = "success";
+    $flag = isset($jsonArray[$key]) && $jsonArray[$key] === true;
+    /* recaptcha code ends here */
+}
 // Include config file
 require_once "config.php";
 
@@ -154,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $flag) {
 
     // Close connection
     mysqli_close($link);
-} else {
+} else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_err = "Recaptcha must be solved";
 }
 ?>
@@ -216,7 +216,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $flag) {
                     <?php echo $confirm_password_err; ?>
                 </span>
             </div>
-            						<!-- your-site-key (down ) -->
+            <!-- your-site-key (down ) -->
             <div class="g-recaptcha" data-sitekey="6LeW-IslAAAAAJCUowA8zfm3s1aJBveIOGwbGTDR"></div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
