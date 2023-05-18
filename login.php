@@ -1,4 +1,6 @@
 <?php
+ $key;
+ $flag;
 // Initialize the session
 session_start();
 
