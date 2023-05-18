@@ -1,4 +1,6 @@
 <?php
+ $key;
+ $flag;
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     /* recaptcha code starts here */
