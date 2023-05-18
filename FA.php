@@ -1,4 +1,6 @@
 <?php
+$key;
+ $flag;
 /* recaptcha code starts here : */
 session_start();
 
@@ -70,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $flag) {
         }
     }
 
-} else {
+}  else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_err = "Recaptcha must be solved";
 }
 
