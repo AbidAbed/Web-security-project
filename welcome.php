@@ -39,7 +39,6 @@ $_SESSION["signedup"] = false;
         <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
     </p>
     <?php
-    session_start();
     // header("location: login.php");
     // exit;
     require_once "config.php";

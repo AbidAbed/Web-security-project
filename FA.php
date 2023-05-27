@@ -25,7 +25,7 @@ $jsonArray = json_decode($result, true);
 $key = "success";
 $flag = $jsonArray[$key] ?? false;
 /* recaptcha code ends here . */
-$code_input_err = $login_err = "";
+$code_input_err = $code_input = $login_err = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $flag) {
     if (empty(trim($_POST["code_input"]))) {
         $code_input_err = "Please enter your code.";
